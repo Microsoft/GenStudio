@@ -20,12 +20,12 @@ Follow these steps to build your own image similarity model.
         - **failed.pkl**: list of the index in targets of any images we failed to featurize.
         - **total_i.pkl**: decimal count of the total number of images analyzed
     - Shutdown and close the `Featurize Images.ipynb` notebook. 
-7. Next, we build a nearest neighbors model using the vector for each image you created in the previous step. This model will be used to search for the closest visually similar image.
+3. Next, we build a nearest neighbors model using the vector for each image you created in the previous step. This model will be used to search for the closest visually similar image.
     - Open the `Build Nearest Neighbors.ipynb`  notebook
     - Under the **Define Constants** cell, define the file path where the annoy model will be saved & path to the featurized images.
     - Run the remaining cells. These cells will build, train and save the annoy index. 
 
-    ### You have now built your nearest neighbors index!
+    ### You have now built your nearest neighbors index! 
 
 # Build the Docker Containers
 
@@ -55,12 +55,12 @@ Follow these steps to create a gpu enabled docker container for an image similar
     ```
     
 ## Build the BigGAN API container
-Follow these steps to build your own API which generates images from proGAN.
+Follow these steps to build your own API which generates images from BigGAN.
 1. Navigate to `api/BigGAN/deployment`
 2. Repeat steps 4-6 from **Build the image similarity API container** but update the container name and dockerfile name
 
 ## Build the ProGAN API container
-Follow these steps to build your own API which generates images from proGAN.
+Follow these steps to build your own API which generates images from ProGAN.
 1. Navigate to `api/ProGAN/deployment`
 2. Repeat steps 4-6 from **Build the image similarity API container** but update the container name and dockerfile name
 
@@ -71,11 +71,11 @@ These steps will walk through how to use ASK to deploy the Flask APIs.
 ## Install Azure CLI and kubectl & Deploy your AKS Cluster
 1. [install the Azure CLI](https://docs.microsoft.com/en-us/cli/azure/install-azure-cli?view=azure-cli-latest). The Azure CLI is a command-line tool for managing Azure resources. 
 
-1. Create a resource group for your AKS cluster
+2. Create a resource group for your AKS cluster
     ```bash
     az group create --name myResourceGroup --location eastus
     ```
-1. Create your AKS cluster
+3. Create your AKS cluster
     ```bash
         az aks create \
         --resource-group myResourceGroup \
@@ -84,17 +84,17 @@ These steps will walk through how to use ASK to deploy the Flask APIs.
         --enable-addons monitoring \
         --generate-ssh-keys
     ```
-1. Connect to the Kubernetes cluster from your local computer with [kubectl](https://kubernetes.io/docs/reference/kubectl/kubectl/), the Kubernetes command-line client. If you're using the Azure Cloud Shell, `kubectl` is already installed. To install it locally, use the [az aks install-cli](https://docs.microsoft.com/cli/azure/aks#az-aks-install-cli) command:
+4. Connect to the Kubernetes cluster from your local computer with [kubectl](https://kubernetes.io/docs/reference/kubectl/kubectl/), the Kubernetes command-line client. If you're using the Azure Cloud Shell, `kubectl` is already installed. To install it locally, use the [az aks install-cli](https://docs.microsoft.com/cli/azure/aks#az-aks-install-cli) command:
     ```bash
     az aks install-cli
     ```
 
-1. Connect to the cluster using kubectl. To do this configure `kubectl` to connect to your AKS cluster with the [az aks get-credentials](https://docs.microsoft.com/cli/azure/aks#az-aks-get-credentials) command:
+5. Connect to the cluster using kubectl. To do this configure `kubectl` to connect to your AKS cluster with the [az aks get-credentials](https://docs.microsoft.com/cli/azure/aks#az-aks-get-credentials) command:
     ```bash
     az aks get-credentials --resource-group myResourceGroup --name myAKSCluster
     ```
 
-1. Verify your connection with the [kubectl get nodes](https://kubernetes.io/docs/reference/generated/kubectl/kubectl-commands#get) command:
+6. Verify your connection with the [kubectl get nodes](https://kubernetes.io/docs/reference/generated/kubectl/kubectl-commands#get) command:
     ```bash
     $ kubectl get nodes
 
