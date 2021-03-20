@@ -7,7 +7,7 @@ scikit_learn==0.19.1
 click==6.7
 Flask==1.0.2
 itsdangerous==0.24
-Jinja2==2.10
+Jinja2==2.11.3
 MarkupSafe==1.0
 Werkzeug==0.14.1
 flask-cors
